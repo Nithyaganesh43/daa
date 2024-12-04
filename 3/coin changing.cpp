@@ -1,25 +1,21 @@
-#include <iostream>
-#include <vector>
+// C++ program for coin change problem
+// using recursion
+#include <bits/stdc++.h>
 using namespace std;
+int countRecur(vector<int>& coins, int n, int sum) {
+    if (sum == 0) return 1;
+    if (sum < 0 || n == 0) return 0;
+    return countRecur(coins, n, sum - coins[n - 1]) + 
+            countRecur(coins, n - 1, sum);
+}
 
-int coinChange(vector<int>& coins, int amount) {
-    vector<int> dp(amount + 1, INT_MAX);
-    dp[0] = 0;
-    for (int i = 1; i <= amount; i++) {
-        for (int coin : coins) {
-            if (i >= coin && dp[i - coin] != INT_MAX) {
-                dp[i] = min(dp[i], dp[i - coin] + 1);
-            }
-        }
-    }
-    return dp[amount] == INT_MAX ? -1 : dp[amount];
+int count(vector<int> &coins, int sum) {
+    return countRecur(coins, coins.size(), sum);
 }
 
 int main() {
-    int n, amount;
-    cin >> n >> amount;
-    vector<int> coins(n);
-    for (int i = 0; i < n; i++) cin >> coins[i];
-    cout << coinChange(coins, amount) << endl;
+    vector<int> coins = {1, 2, 3};
+    int sum = 5;
+    cout << count(coins, sum);
     return 0;
 }

@@ -7,7 +7,7 @@ int partition(vector<int>& arr, int low, int high) {
     for (int j = low; j < high; j++) {
         if (arr[j] < pivot) swap(arr[++i], arr[j]);
     }
-    swap(arr[i + 1], arr[high]);
+    swap(arr[i + 1], pivot);
     return i + 1;
 }
 
