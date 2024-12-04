@@ -3,7 +3,7 @@
 using namespace std;
 
 int knapsack(int W, vector<int>& weights, vector<int>& values, int n) {
-    vector<int> dp(W + 1, 0); // 1D array for dynamic programming
+    vector<int> dp(W + 1, 0); 
 
     for (int i = 0; i < n; i++) {
         for (int j = W; j >= weights[i]; j--) {
